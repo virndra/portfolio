@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Play, Pause, ExternalLink, Volume2, VolumeX } from "lucide-react";
 
 interface SpotifyTrack {
   isPlaying: boolean;
@@ -11,6 +12,7 @@ interface SpotifyTrack {
   album: string;
   albumImageUrl: string;
   songUrl: string;
+  previewUrl: string;
 }
 
 function SpotifyIcon({ className }: { className?: string }) {
@@ -21,25 +23,64 @@ function SpotifyIcon({ className }: { className?: string }) {
   );
 }
 
+// Bouncing equalizer bars when audio is playing
+function EqualizerBars({ isPlaying }: { isPlaying: boolean }) {
+  return (
+    <div className="flex items-end gap-[3px] h-3.5 px-1">
+      <span
+        className={`w-[3px] rounded-full bg-[#1DB954] transition-all duration-300 ${
+          isPlaying ? "animate-[bounce_0.6s_ease-in-out_infinite] h-3.5" : "h-1.5 opacity-60"
+        }`}
+      />
+      <span
+        className={`w-[3px] rounded-full bg-[#1DB954] transition-all duration-300 ${
+          isPlaying ? "animate-[bounce_0.8s_ease-in-out_infinite_0.15s] h-3" : "h-2.5 opacity-60"
+        }`}
+      />
+      <span
+        className={`w-[3px] rounded-full bg-[#1DB954] transition-all duration-300 ${
+          isPlaying ? "animate-[bounce_0.5s_ease-in-out_infinite_0.3s] h-3.5" : "h-1 opacity-60"
+        }`}
+      />
+      <span
+        className={`w-[3px] rounded-full bg-[#1DB954] transition-all duration-300 ${
+          isPlaying ? "animate-[bounce_0.7s_ease-in-out_infinite_0.1s] h-2.5" : "h-2 opacity-60"
+        }`}
+      />
+    </div>
+  );
+}
+
 export default function SpotifyCard() {
   const [track, setTrack] = useState<SpotifyTrack>({
     isPlaying: false,
     title: "Hall of Fame",
-    artist: "The Script",
+    artist: "The Script ft. will.i.am",
     album: "#3",
-    albumImageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80",
-    songUrl: "https://open.spotify.com/track/7CH1sfLfcA38mWRyR4KZjM",
+    albumImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0244287246ea331e6f7b0ef8a9",
+    songUrl: "https://open.spotify.com/track/0FB5ILDICqwK6xj7W1RP9u?si=129f5a6e22c94e8c",
+    previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7e/13/22/7e1322c7-980d-160f-8c68-dc9b9863a559/mzaf_1440735671923738990.plus.aac.p.m4a",
   });
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(30);
+  const [isMuted, setIsMuted] = useState(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Fetch track data from API
   useEffect(() => {
     async function fetchSpotify() {
       try {
         const res = await fetch("/api/spotify");
         if (res.ok) {
           const data = await res.json();
-          setTrack(data);
+          setTrack((prev) => ({
+            ...prev,
+            ...data,
+            previewUrl: data.previewUrl || prev.previewUrl,
+          }));
         }
       } catch (err) {
         console.error("Failed to load Spotify track:", err);
@@ -51,67 +92,221 @@ export default function SpotifyCard() {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle Play/Pause
+  const togglePlayPause = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!audioRef.current) return;
+
+    if (isAudioPlaying) {
+      audioRef.current.pause();
+      setIsAudioPlaying(false);
+    } else {
+      audioRef.current
+        .play()
+        .then(() => setIsAudioPlaying(true))
+        .catch((err) => console.error("Audio playback error:", err));
+    }
+  };
+
+  // Handle Mute toggle
+  const toggleMute = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  // Handle Seek / Timebar scrubbing
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    const newTime = parseFloat(e.target.value);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  const formatTime = (time: number) => {
+    if (isNaN(time)) return "0:00";
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
+  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full mb-10 select-none"
+      className="w-full mb-10 select-none font-sans"
     >
-      <a
-        href={track.songUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full"
-      >
-        {/* Card Container */}
-        <motion.div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          whileTap={{ scale: 0.97 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          style={{
-            borderColor: isHovered ? "transparent" : "var(--card-border)",
-            borderStyle: "solid",
-          }}
-          className="w-full p-4 sm:p-5 rounded-xl flex items-center justify-between shadow-sm group cursor-pointer relative bg-[var(--card-bg)] border sm:hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] transition-all duration-300"
-        >
-          {/* Card Content */}
-          <div className="flex items-center justify-between w-full">
-            {/* Left Side: Track Details */}
-            <div className="flex flex-col space-y-2.5">
-              {/* Header row */}
-              <div className="flex items-center gap-2 text-xs font-mono text-[var(--muted)]">
-                <SpotifyIcon className={`w-4 h-4 transition-colors duration-500 ease-out text-[#1DB954] sm:text-[var(--muted)] ${track.isPlaying ? "text-[#1DB954]" : "sm:group-hover:text-[#1DB954]"}`} />
-                <span className="tracking-widest uppercase text-[11px] font-semibold text-[var(--muted)]">
-                  {track.isPlaying ? "CURRENTLY PLAYING" : "LAST PLAYED"}
-                </span>
+      {/* HTML5 Audio Element */}
+      <audio
+        ref={audioRef}
+        src={track.previewUrl}
+        preload="auto"
+        onTimeUpdate={() => {
+          if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime);
+            if (audioRef.current.duration) {
+              setDuration(audioRef.current.duration);
+            }
+          }
+        }}
+        onLoadedMetadata={() => {
+          if (audioRef.current && audioRef.current.duration) {
+            setDuration(audioRef.current.duration);
+          }
+        }}
+        onEnded={() => {
+          setIsAudioPlaying(false);
+          setCurrentTime(0);
+        }}
+      />
+
+      <div className="w-full rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,0,0,0.4)]">
+        {/* Header Row */}
+        <div className="flex items-center justify-between px-4 sm:px-5 pt-3.5 pb-2 border-b border-[var(--card-border)]/50 bg-black/20 text-xs font-mono text-[var(--muted)]">
+          <div className="flex items-center gap-2">
+            <SpotifyIcon className={`w-4 h-4 text-[#1DB954] ${isAudioPlaying ? "animate-pulse" : ""}`} />
+            <span className="tracking-widest uppercase text-[11px] font-semibold text-[var(--muted)]">
+              {isAudioPlaying ? "NOW PLAYING" : "SPOTIFY TRACK"}
+            </span>
+            <EqualizerBars isPlaying={isAudioPlaying || track.isPlaying} />
+          </div>
+
+          <a
+            href={track.songUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-[var(--muted)] hover:text-[#1DB954] transition-colors text-xs font-mono"
+            title="Open in Spotify"
+          >
+            <span>Spotify</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        {/* Card Content */}
+        <div className="p-4 sm:p-5 flex flex-col space-y-4">
+          {/* Track Info & Play Button */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5 min-w-0">
+              {/* Album Cover Thumbnail */}
+              <div
+                onClick={togglePlayPause}
+                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-[var(--card-border)] flex-shrink-0 bg-[var(--card-bg)] shadow-md group/album cursor-pointer"
+              >
+                <Image
+                  src={track.albumImageUrl}
+                  alt={track.title}
+                  fill
+                  unoptimized
+                  className="object-cover transition-transform duration-500 group-hover/album:scale-105"
+                />
+                <div
+                  className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-200 ${
+                    isAudioPlaying ? "opacity-100" : "opacity-0 group-hover/album:opacity-100"
+                  }`}
+                >
+                  {isAudioPlaying ? (
+                    <Pause className="w-6 h-6 text-white fill-white" />
+                  ) : (
+                    <Play className="w-6 h-6 text-white fill-white ml-0.5" />
+                  )}
+                </div>
               </div>
 
-              {/* Track Title & Artist */}
-              <div>
-                <h3 className="font-semibold text-base sm:text-lg text-[var(--foreground)] font-sans tracking-tight leading-snug">
+              {/* Title & Artist */}
+              <div className="min-w-0">
+                <h3 className="font-semibold text-base sm:text-lg text-[var(--foreground)] tracking-tight leading-snug truncate">
                   {track.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[var(--muted)] font-mono mt-0.5">
+                <p className="text-xs sm:text-sm text-[var(--muted)] font-mono truncate mt-0.5">
                   {track.artist}
+                </p>
+                <p className="text-[11px] text-[var(--muted)]/70 font-mono truncate mt-0.5 hidden sm:block">
+                  Album: {track.album}
                 </p>
               </div>
             </div>
 
-            {/* Right Side: Album Art Thumbnail (Full color on mobile, grayscale to color on desktop hover) */}
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-md overflow-hidden border border-[var(--card-border)] sm:group-hover:border-transparent flex-shrink-0 bg-[var(--card-bg)] shadow-md">
-              <Image
-                src={track.albumImageUrl}
-                alt={track.title}
-                fill
-                className="object-cover filter-none grayscale-0 sm:filter sm:grayscale sm:group-hover:grayscale-0 transition-all duration-500 ease-out"
-              />
+            {/* Play/Pause Button & Mute Control */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.94 }}
+                onClick={togglePlayPause}
+                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-md transition-all duration-200 cursor-pointer ${
+                  isAudioPlaying
+                    ? "bg-[#1DB954] text-black shadow-[#1DB954]/30"
+                    : "bg-[#1DB954] hover:bg-[#1ed760] text-black shadow-[#1DB954]/20"
+                }`}
+                title={isAudioPlaying ? "Pause Track" : "Play Track"}
+              >
+                {isAudioPlaying ? (
+                  <Pause className="w-5 h-5 fill-current" />
+                ) : (
+                  <Play className="w-5 h-5 fill-current ml-0.5" />
+                )}
+              </motion.button>
+
+              <button
+                type="button"
+                onClick={toggleMute}
+                className="p-2 rounded-full text-[var(--muted)] hover:text-white transition-colors"
+                title={isMuted ? "Unmute Audio" : "Mute Audio"}
+              >
+                {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}
+              </button>
             </div>
           </div>
-        </motion.div>
-      </a>
+
+          {/* Interactive Scrubbable Timebar */}
+          <div className="w-full flex flex-col space-y-1.5 pt-1">
+            <div className="relative w-full flex items-center group/scrub cursor-pointer">
+              {/* Custom Track Background */}
+              <div className="absolute inset-0 h-1.5 rounded-lg bg-[var(--card-border)] overflow-hidden">
+                <div
+                  className="h-full bg-[#1DB954] transition-all duration-100"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+
+              {/* Range Input for Scrubbing */}
+              <input
+                type="range"
+                min="0"
+                max={duration || 30}
+                step="0.01"
+                value={currentTime}
+                onChange={handleSeek}
+                className="relative z-10 w-full h-1.5 opacity-0 cursor-pointer"
+              />
+
+              {/* Scrub Handle Thumb */}
+              <div
+                className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#1DB954] border-2 border-white shadow-md pointer-events-none transition-transform group-hover/scrub:scale-125"
+                style={{ left: `calc(${progressPercent}% - 7px)` }}
+              />
+            </div>
+
+            {/* Time counters */}
+            <div className="flex items-center justify-between text-[11px] font-mono text-[var(--muted)] pt-0.5">
+              <span>{formatTime(currentTime)}</span>
+              <span>{formatTime(duration)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </motion.section>
   );
 }
