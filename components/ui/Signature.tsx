@@ -17,7 +17,7 @@ export const Signature: React.FC<SignatureProps> = ({
     return (
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 914 210"
+        viewBox="-15 -15 944 240"
         fill="currentColor"
         fillRule="evenodd"
         className={className}
@@ -38,7 +38,7 @@ export const Signature: React.FC<SignatureProps> = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 914 210"
+      viewBox="-15 -15 944 240"
       fill="currentColor"
       fillRule="evenodd"
       className={className}

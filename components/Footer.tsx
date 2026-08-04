@@ -25,17 +25,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Center Row: Signature image centered */}
-      <div className="w-full flex justify-center items-center my-6 overflow-hidden">
+      {/* Center Row: Signature centered */}
+      <div className="w-full flex justify-center items-center my-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-36 sm:h-52 scale-110 sm:scale-125 flex items-center justify-center"
-          style={{ filter: "var(--signature-filter)", transition: "filter 0.3s ease" }}
+          className="w-full max-w-lg h-24 sm:h-32 flex items-center justify-center text-[var(--muted)] hover:text-foreground transition-colors duration-300"
         >
-          <Signature className="w-full h-full max-h-full" />
+          <Signature className="w-full h-full" />
         </motion.div>
       </div>
     </motion.footer>
