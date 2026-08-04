@@ -26,13 +26,13 @@ export default function Footer() {
       </div>
 
       {/* Center Row: Signature centered */}
-      <div className="w-full flex justify-center items-center my-4">
+      <div className="w-full flex justify-center items-center my-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-md h-20 sm:h-28 flex items-center justify-center text-foreground/85"
+          className="w-full max-w-xl h-24 sm:h-32 flex items-center justify-center text-[#555555] dark:text-[#4a4a4a]"
         >
           <Signature className="w-full h-full" />
         </motion.div>
