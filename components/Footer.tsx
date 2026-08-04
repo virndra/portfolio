@@ -32,7 +32,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-lg h-24 sm:h-32 flex items-center justify-center text-[var(--muted)] hover:text-foreground transition-colors duration-300"
+          className="w-full max-w-md h-20 sm:h-28 flex items-center justify-center text-foreground/85"
         >
           <Signature className="w-full h-full" />
         </motion.div>
