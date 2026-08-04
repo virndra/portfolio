@@ -51,8 +51,13 @@ export default function SocialLinks() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full mb-10 space-y-3 sm:space-y-4 select-none"
+      className="w-full mb-14 sm:mb-12 space-y-3 sm:space-y-4 select-none"
     >
+      {/* Outer Section Heading matching Projects & GitHub */}
+      <h2 className="font-heading text-lg text-[var(--foreground)] mb-4">
+        Let&apos;s Connect
+      </h2>
+
       {/* Row 1: Two large cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* X Account Card */}
