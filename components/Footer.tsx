@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import Signature from "@/components/ui/Signature";
 
 export default function Footer() {
   return (
@@ -32,16 +32,10 @@ export default function Footer() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-36 sm:h-52 scale-110 sm:scale-125"
+          className="relative w-full h-36 sm:h-52 scale-110 sm:scale-125 flex items-center justify-center"
           style={{ filter: "var(--signature-filter)", transition: "filter 0.3s ease" }}
         >
-          <Image
-            src="/signature.png"
-            alt="Veerendra Pradeep Signature"
-            fill
-            className="object-contain"
-            priority
-          />
+          <Signature className="w-full h-full max-h-full" />
         </motion.div>
       </div>
     </motion.footer>
