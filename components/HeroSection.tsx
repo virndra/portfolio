@@ -36,7 +36,7 @@ export default function HeroSection() {
         </p>
       </motion.div>
 
-      {/* Right Column: Profile Picture (Exactly 15 outer dashed segments & 3 inner arc segments) */}
+      {/* Right Column: Profile Picture (Full color on mobile, grayscale to color on desktop hover) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -83,7 +83,7 @@ export default function HeroSection() {
                 src="/profile_pic.jpeg"
                 alt="Veerendra Pradeep"
                 fill
-                className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+                className="object-cover filter-none grayscale-0 sm:filter sm:grayscale sm:group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                 priority
               />
             </div>

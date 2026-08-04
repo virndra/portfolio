@@ -60,9 +60,8 @@ export default function SocialLinks() {
           href="https://x.com/pradeepdevv"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.97 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] sm:hover:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]">
@@ -70,7 +69,7 @@ export default function SocialLinks() {
             </div>
             <span className="font-semibold text-xs sm:text-sm text-[var(--foreground)] font-mono">@pradeepdevv</span>
           </div>
-          <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] group-hover:border-[var(--card-hover-border)] transition">
+          <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] sm:group-hover:border-[var(--card-hover-border)] transition">
             Follow
           </span>
         </motion.a>
@@ -80,9 +79,8 @@ export default function SocialLinks() {
           href="https://github.com/virndra"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.97 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] sm:hover:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]">
@@ -90,7 +88,7 @@ export default function SocialLinks() {
             </div>
             <span className="font-semibold text-xs sm:text-sm text-[var(--foreground)] font-mono">virndra</span>
           </div>
-          <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] group-hover:border-[var(--card-hover-border)] transition">
+          <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] sm:group-hover:border-[var(--card-hover-border)] transition">
             Follow
           </span>
         </motion.a>
@@ -101,9 +99,8 @@ export default function SocialLinks() {
         {/* Email */}
         <motion.a
           href="mailto:veerendrapradeeptalari@gmail.com"
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] font-mono transition-all duration-300 cursor-pointer"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] sm:hover:border-[var(--card-hover-border)] font-mono transition-all duration-300 cursor-pointer"
         >
           <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
           <span>Email</span>
@@ -114,11 +111,10 @@ export default function SocialLinks() {
           href="https://discord.gg/cWtRRWZ2"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-[#5865F2] active:text-[#5865F2] font-mono transition-all duration-300 cursor-pointer group"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[#5865F2] sm:text-[var(--foreground)] sm:hover:border-[var(--card-hover-border)] sm:hover:text-[#5865F2] font-mono transition-all duration-300 cursor-pointer group"
         >
-          <DiscordIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)] group-hover:text-[#5865F2] group-active:text-[#5865F2]" />
+          <DiscordIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#5865F2] sm:text-[var(--muted)] sm:group-hover:text-[#5865F2]" />
           <span>Discord</span>
         </motion.a>
 
@@ -127,11 +123,10 @@ export default function SocialLinks() {
           href="https://www.linkedin.com/in/veerendrapradeep/"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-blue-500 active:text-blue-500 font-mono transition-all duration-300 cursor-pointer"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-blue-500 sm:text-[var(--foreground)] sm:hover:border-[var(--card-hover-border)] sm:hover:text-blue-500 font-mono transition-all duration-300 cursor-pointer"
         >
-          <LinkedinIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
+          <LinkedinIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500 sm:text-[var(--muted)] sm:group-hover:text-blue-500" />
           <span>LinkedIn</span>
         </motion.a>
 
@@ -140,11 +135,10 @@ export default function SocialLinks() {
           href="https://www.instagram.com/pradeepdevv/"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-pink-500 active:text-pink-500 font-mono transition-all duration-300 cursor-pointer"
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-pink-500 sm:text-[var(--foreground)] sm:hover:border-[var(--card-hover-border)] sm:hover:text-pink-500 font-mono transition-all duration-300 cursor-pointer"
         >
-          <InstagramIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
+          <InstagramIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-500 sm:text-[var(--muted)] sm:group-hover:text-pink-500" />
           <span>Insta</span>
         </motion.a>
       </div>
