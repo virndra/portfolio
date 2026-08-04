@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #f2f2f2;
+  --muted: #9ca3af;
+  --card-bg: #131313;
+  --card-border: #262626;
+  --card-hover-border: #808080;
+  --dot-color: rgba(255, 255, 255, 0.08);
+  --signature-filter: brightness(1.25) contrast(1.25);
+  --heatmap-empty: #181818;
+  --accent-spotify: #1db954;
+  --accent-discord: #5865f2;
+}
+
+html.light {
+  --background: #f7f7f7;
+  --foreground: #121212;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover-border: #737373;
+  --dot-color: rgba(0, 0, 0, 0.08);
+  --signature-filter: invert(1) brightness(0.2);
+  --heatmap-empty: #ebedf0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --font-cormorant: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-heading: var(--font-silkscreen), cursive;
+  --font-mono: var(--font-jetbrains), monospace;
+}
+
+html {
+  color-scheme: dark light;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jetbrains), monospace;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom font class for Coded Signature */
+.font-signature {
+  font-family: var(--font-signature), "Herr Von Muellerhoff", cursive;
+}
+
+/* Custom font class for Cormorant Garamond */
+.font-cormorant {
+  font-family: var(--font-cormorant), "Cormorant Garamond", serif;
+  font-weight: 400;
+}
+
+/* Hide scrollbars utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom card style with smooth cubic-bezier transitions */
+.dashed-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dashed-card:hover {
+  border-color: var(--card-hover-border);
+}
+
+/* Dots pattern background overlay */
+.bg-dot-pattern {
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
