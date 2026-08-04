@@ -51,16 +51,18 @@ export default function SocialLinks() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full mb-10 space-y-3 sm:space-y-4"
+      className="w-full mb-10 space-y-3 sm:space-y-4 select-none"
     >
       {/* Row 1: Two large cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* X Account Card */}
-        <a
+        <motion.a
           href="https://x.com/pradeepdevv"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300"
+          whileHover={{ scale: 1.015 }}
+          whileTap={{ scale: 0.97 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]">
@@ -71,14 +73,16 @@ export default function SocialLinks() {
           <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] group-hover:border-[var(--card-hover-border)] transition">
             Follow
           </span>
-        </a>
+        </motion.a>
 
         {/* GitHub Account Card */}
-        <a
+        <motion.a
           href="https://github.com/virndra"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300"
+          whileHover={{ scale: 1.015 }}
+          whileTap={{ scale: 0.97 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] p-3.5 sm:p-4 rounded-xl flex items-center justify-between group transition-all duration-300 cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]">
@@ -89,52 +93,60 @@ export default function SocialLinks() {
           <span className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] group-hover:border-[var(--card-hover-border)] transition">
             Follow
           </span>
-        </a>
+        </motion.a>
       </div>
 
       {/* Row 2: Four compact icon buttons */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
         {/* Email */}
-        <a
+        <motion.a
           href="mailto:veerendrapradeeptalari@gmail.com"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] font-mono transition-all duration-300"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] font-mono transition-all duration-300 cursor-pointer"
         >
           <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
           <span>Email</span>
-        </a>
+        </motion.a>
 
         {/* Discord */}
-        <a
+        <motion.a
           href="https://discord.gg/cWtRRWZ2"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] hover:text-[#5865F2] font-mono transition-all duration-300"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-[#5865F2] active:text-[#5865F2] font-mono transition-all duration-300 cursor-pointer group"
         >
-          <DiscordIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)] group-hover:text-[#5865F2]" />
+          <DiscordIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)] group-hover:text-[#5865F2] group-active:text-[#5865F2]" />
           <span>Discord</span>
-        </a>
+        </motion.a>
 
         {/* LinkedIn */}
-        <a
+        <motion.a
           href="https://www.linkedin.com/in/veerendrapradeep/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] hover:text-blue-500 font-mono transition-all duration-300"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-blue-500 active:text-blue-500 font-mono transition-all duration-300 cursor-pointer"
         >
           <LinkedinIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
           <span>LinkedIn</span>
-        </a>
+        </motion.a>
 
         {/* Instagram */}
-        <a
+        <motion.a
           href="https://www.instagram.com/pradeepdevv/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] hover:text-pink-500 font-mono transition-all duration-300"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[var(--card-bg)] border border-[var(--card-border)] py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-lg flex items-center justify-center gap-2 text-xs text-[var(--foreground)] hover:border-[var(--card-hover-border)] active:border-[var(--card-hover-border)] hover:text-pink-500 active:text-pink-500 font-mono transition-all duration-300 cursor-pointer"
         >
           <InstagramIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted)]" />
           <span>Insta</span>
-        </a>
+        </motion.a>
       </div>
     </motion.section>
   );

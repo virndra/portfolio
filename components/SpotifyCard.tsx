@@ -57,7 +57,7 @@ export default function SpotifyCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full mb-10"
+      className="w-full mb-10 select-none"
     >
       <a
         href={track.songUrl}
@@ -65,17 +65,18 @@ export default function SpotifyCard() {
         rel="noopener noreferrer"
         className="block w-full"
       >
-        {/* Solid / Borderless Card Container without dotted borders */}
+        {/* Mobile & Desktop Responsive Interactive Card */}
         <motion.div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           style={{
             borderColor: isHovered ? "transparent" : "var(--card-border)",
             borderStyle: "solid",
           }}
-          className="w-full p-4 sm:p-5 rounded-xl flex items-center justify-between shadow-sm group cursor-pointer relative bg-[var(--card-bg)] border hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] transition-all duration-300"
+          className="w-full p-4 sm:p-5 rounded-xl flex items-center justify-between shadow-sm group cursor-pointer relative bg-[var(--card-bg)] border hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] active:shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all duration-300"
         >
           {/* Card Content */}
           <div className="flex items-center justify-between w-full">
@@ -83,7 +84,7 @@ export default function SpotifyCard() {
             <div className="flex flex-col space-y-2.5">
               {/* Header row */}
               <div className="flex items-center gap-2 text-xs font-mono text-[var(--muted)]">
-                <SpotifyIcon className={`w-4 h-4 transition-colors duration-500 ease-out ${track.isPlaying ? "text-[#1DB954]" : "text-[var(--muted)] group-hover:text-[#1DB954]"}`} />
+                <SpotifyIcon className={`w-4 h-4 transition-colors duration-500 ease-out ${track.isPlaying ? "text-[#1DB954]" : "text-[var(--muted)] group-hover:text-[#1DB954] group-active:text-[#1DB954]"}`} />
                 <span className="tracking-widest uppercase text-[11px] font-semibold text-[var(--muted)]">
                   {track.isPlaying ? "CURRENTLY PLAYING" : "LAST PLAYED"}
                 </span>
@@ -101,12 +102,12 @@ export default function SpotifyCard() {
             </div>
 
             {/* Right Side: Album Art Thumbnail */}
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-md overflow-hidden border border-[var(--card-border)] group-hover:border-transparent flex-shrink-0 bg-[var(--card-bg)] shadow-md">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-md overflow-hidden border border-[var(--card-border)] group-hover:border-transparent group-active:border-transparent flex-shrink-0 bg-[var(--card-bg)] shadow-md">
               <Image
                 src={track.albumImageUrl}
                 alt={track.title}
                 fill
-                className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 ease-out"
+                className="object-cover filter grayscale group-hover:grayscale-0 group-active:grayscale-0 transition-all duration-500 ease-out"
               />
             </div>
           </div>
