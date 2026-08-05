@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   description: "Portfolio of Veerendra Pradeep (aka Vir) — E-Rank Developer, Full Stack Engineer.",
   keywords: ["Veerendra Pradeep", "Vir", "E-Rank Dev", "Full Stack Developer", "Portfolio"],
   authors: [{ name: "Veerendra Pradeep" }],
+  icons: {
+    icon: "/onepeice_favicon.png",
+    shortcut: "/onepeice_favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
