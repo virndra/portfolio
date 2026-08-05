@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Veerendra Pradeep — E-Rank Dev",
+  title: "VIR",
   description: "Portfolio of Veerendra Pradeep (aka Vir) — E-Rank Developer, Full Stack Engineer.",
   keywords: ["Veerendra Pradeep", "Vir", "E-Rank Dev", "Full Stack Developer", "Portfolio"],
   authors: [{ name: "Veerendra Pradeep" }],
