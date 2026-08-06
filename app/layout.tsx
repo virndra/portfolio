@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Cormorant_Garamond, Silkscreen, JetBrains_Mono, Herr_Von_Muellerhoff } from "next/font/google";
+import FloatingNav from "@/components/FloatingNav";
 import "./globals.css";
 
 const herrVonMuellerhoff = Herr_Von_Muellerhoff({
@@ -27,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VIR",
+  title: "Vir",
   description: "Portfolio of Veerendra Pradeep (aka Vir) — E-Rank Developer, Full Stack Engineer.",
   keywords: ["Veerendra Pradeep", "Vir", "E-Rank Dev", "Full Stack Developer", "Portfolio"],
   authors: [{ name: "Veerendra Pradeep" }],
@@ -54,6 +55,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] font-mono selection:bg-neutral-500 selection:text-white transition-colors duration-300"
       >
         {children}
+        <FloatingNav />
         <Script src="/oneko.js" data-cat="/oneko.gif" strategy="afterInteractive" />
       </body>
     </html>

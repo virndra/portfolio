@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] bg-dot-pattern transition-colors duration-300">
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between pt-4 pb-12">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between pt-4 pb-32">
         <div>
           {/* Section 5.1: Top bar */}
           <TopBar />
