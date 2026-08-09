@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { ProjectItem, getTechBadgeStyle } from "@/lib/projects-data";
@@ -44,16 +43,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <span className="absolute -bottom-[3px] -right-[3px] w-3.5 h-3.5 border-b-2 border-r-2 border-neutral-900 dark:border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
       <div>
-        {/* Top Image Preview Banner */}
-        <div className="relative w-full h-[180px] rounded-none overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] mb-4">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
-          />
-        </div>
-
         {/* Category & Status Row */}
         <div className="flex items-center justify-between gap-2 mb-2">
           <span className="text-[11px] font-mono text-neutral-600 dark:text-[#8a8a93] truncate">
