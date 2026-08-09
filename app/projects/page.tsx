@@ -1,7 +1,6 @@
 import React from "react";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
-import FloatingNav from "@/components/FloatingNav";
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS_DATA } from "@/lib/projects-data";
 
@@ -40,9 +39,6 @@ export default function ProjectsPage() {
         {/* Footer */}
         <Footer />
       </main>
-
-      {/* Floating Nav */}
-      <FloatingNav />
     </div>
   );
 }
