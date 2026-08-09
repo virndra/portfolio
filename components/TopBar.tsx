@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FileText, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -11,6 +12,8 @@ interface TopBarProps {
 }
 
 export default function TopBar({ title, subtitle, showGreeting = true }: TopBarProps) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -47,7 +50,7 @@ export default function TopBar({ title, subtitle, showGreeting = true }: TopBarP
             {title}
           </h1>
           {subtitle && (
-            <p className="text-[11px] sm:text-xs font-mono text-[var(--muted)] mt-0.5">
+            <p className="text-[10px] sm:text-xs font-mono text-[var(--muted)] mt-0.5">
               {subtitle}
             </p>
           )}
@@ -63,16 +66,30 @@ export default function TopBar({ title, subtitle, showGreeting = true }: TopBarP
 
       {/* Right side: Resume button + Theme toggle button aligned on the same line */}
       <div className="flex items-center gap-3">
-        <a
-          href="/RESUMEE.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="resume-button"
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] text-xs font-mono hover:border-[var(--card-hover-border)] transition-all duration-200 shadow-sm"
-        >
-          <FileText className="w-3.5 h-3.5" />
-          <span>Resume</span>
-        </a>
+        {isHome ? (
+          <a
+            href="/RESUMEE.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="resume-button"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] text-xs font-mono hover:border-[var(--card-hover-border)] transition-all duration-200 shadow-sm"
+          >
+            <FileText className="w-3.5 h-3.5" />
+            <span>Resume</span>
+          </a>
+        ) : (
+          <a
+            href="/RESUMEE.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="resume-button"
+            title="View Resume"
+            aria-label="View Resume"
+            className="w-8 h-8 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--foreground)] hover:border-[var(--card-hover-border)] transition-all duration-200 shadow-sm"
+          >
+            <FileText className="w-4 h-4" />
+          </a>
+        )}
 
         {/* Theme Toggle Button */}
         <button
