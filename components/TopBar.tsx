@@ -4,11 +4,16 @@ import React, { useState, useEffect } from "react";
 import { FileText, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function TopBar() {
+interface TopBarProps {
+  title?: string;
+  subtitle?: React.ReactNode;
+  showGreeting?: boolean;
+}
+
+export default function TopBar({ title, subtitle, showGreeting = true }: TopBarProps) {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    // Check initial theme or system preference
     if (document.documentElement.classList.contains("light")) {
       setTheme("light");
     } else {
@@ -33,15 +38,30 @@ export default function TopBar() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full flex items-center justify-between py-6 mb-8 text-sm"
+      className="w-full flex items-start justify-between py-6 mb-8 text-sm"
     >
-      {/* Left side: Hey, I'm 👋 */}
-      <div className="flex items-center gap-2 text-[var(--foreground)] font-mono">
-        <span>Hey, I&apos;m</span>
-        <span>👋</span>
-      </div>
+      {/* Left side: Greeting OR Custom Title/Subtitle */}
+      {title ? (
+        <div>
+          <h1 className="font-heading text-xl sm:text-2xl text-[var(--foreground)] tracking-wider">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="text-xs sm:text-sm font-mono text-[var(--muted)] mt-0.5">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      ) : showGreeting ? (
+        <div className="flex items-center gap-2 text-[var(--foreground)] font-mono">
+          <span>Hey, I&apos;m</span>
+          <span>👋</span>
+        </div>
+      ) : (
+        <div />
+      )}
 
-      {/* Right side: Resume button + Theme toggle button */}
+      {/* Right side: Resume button + Theme toggle button aligned on the same line */}
       <div className="flex items-center gap-3">
         <a
           href="/RESUMEE.pdf"

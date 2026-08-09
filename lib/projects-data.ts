@@ -41,12 +41,12 @@ export const PROJECTS_DATA: ProjectItem[] = [
     description:
       "Autonomous Instagram AI agent with a full management dashboard. Researches viral trends, schedules weekly content, generates AI captions, auto-publishes posts, and manages comment replies.",
     image: "/projects/ig-agent.png",
-    technologies: ["Next.js", "TypeScript", "FastAPI", "LangGraph", "Claude AI", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "FastAPI", "LangGraph", "Anthropic", "Supabase"],
     github: "https://github.com/virndra/ig_agent",
   },
   {
     id: "qquerymind",
-    title: "qquerymind",
+    title: "querymind",
     category: "AI · Database Agent",
     status: "ACTIVE",
     description:
@@ -116,7 +116,7 @@ export function getTechBadgeStyle(tech: string) {
   if (t.includes("c11") || t === "c") {
     return "bg-[#1a2634]/80 text-[#a8b9cc] border-[#a8b9cc]/40";
   }
-  if (t.includes("langgraph") || t.includes("claude")) {
+  if (t.includes("langgraph") || t.includes("claude") || t.includes("anthropic")) {
     return "bg-[#241335]/80 text-[#a855f7] border-[#a855f7]/40";
   }
   if (t.includes("streamlit")) {

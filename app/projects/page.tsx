@@ -14,21 +14,18 @@ export default function ProjectsPage() {
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] bg-dot-pattern transition-colors duration-300">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between pt-4 pb-32">
         <div>
-          {/* Top Bar */}
-          <TopBar />
+          {/* Header Row: PROJECTS title & subtitle on left, Resume & Theme toggle on same line on right */}
+          <TopBar
+            title="PROJECTS"
+            subtitle={
+              <>
+                <span className="text-pink-400 font-semibold">A</span>{" "}
+                <span>collection of things I&apos;ve built.</span>
+              </>
+            }
+          />
 
-          {/* Page Heading & Subtitle */}
-          <section className="mb-8 pt-4">
-            <h1 className="font-heading text-xl sm:text-2xl text-[var(--foreground)] tracking-wider mb-2">
-              PROJECTS
-            </h1>
-            <p className="text-xs sm:text-sm font-mono text-[var(--muted)]">
-              <span className="text-pink-400 font-semibold">A</span>{" "}
-              <span>collection of things I&apos;ve built.</span>
-            </p>
-          </section>
-
-          {/* 3-Column Desktop Grid */}
+          {/* 3-Column Desktop Grid with Sharp Edge Cards & Corner Bracket Hover Effects */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
             {PROJECTS_DATA.map((project) => (
               <ProjectCard key={project.id} project={project} />

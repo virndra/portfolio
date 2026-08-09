@@ -64,11 +64,10 @@ export default function FloatingNav() {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 ${
-                isActive
-                  ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
-                  : "text-neutral-500 font-medium hover:text-white/80"
-              }`}
+              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 ${isActive
+                ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
+                : "text-neutral-500 font-medium hover:text-white/80"
+                }`}
             >
               {item.icon}
               <span className="text-[9px] uppercase tracking-wider mt-0.5">{item.name}</span>
