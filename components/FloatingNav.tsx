@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Home, Terminal, Briefcase, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { liquidGlass } from "@/lib/liquid-glass";
 
 export default function FloatingNav() {
-  const [active, setActive] = useState("Home");
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
@@ -17,20 +19,20 @@ export default function FloatingNav() {
   useEffect(() => {
     if (navRef.current && mounted) {
       const glass = liquidGlass(navRef.current, {
-        scale: -120,     // Strong refraction around the edges
-        blur: 0,         // 100% transparent, no blur inside
-        mapBlur: 12,     // Smooth curve on the edge
-        saturate: 1,     // No artificial saturation
+        scale: -120, // Strong refraction around the edges
+        blur: 0, // 100% transparent, no blur inside
+        mapBlur: 12, // Smooth curve on the edge
+        saturate: 1, // No artificial saturation
       });
       return () => glass.destroy();
     }
   }, [mounted]);
 
   const navItems = [
-    { name: "Home", icon: <Home className="w-[18px] h-[18px] mb-1" />, href: "#" },
-    { name: "Projects", icon: <Terminal className="w-[18px] h-[18px] mb-1" />, href: "#projects" },
-    { name: "Experience", icon: <Briefcase className="w-[18px] h-[18px] mb-1" />, href: "#experience" },
-    { name: "Blogs", icon: <BookOpen className="w-[18px] h-[18px] mb-1" />, href: "#blogs" },
+    { name: "Home", icon: <Home className="w-[18px] h-[18px] mb-1" />, href: "/" },
+    { name: "Projects", icon: <Terminal className="w-[18px] h-[18px] mb-1" />, href: "/projects" },
+    { name: "Experience", icon: <Briefcase className="w-[18px] h-[18px] mb-1" />, href: "/#experience" },
+    { name: "Blogs", icon: <BookOpen className="w-[18px] h-[18px] mb-1" />, href: "/#blogs" },
   ];
 
   if (!mounted) return null;
@@ -53,13 +55,15 @@ export default function FloatingNav() {
         }}
       >
         {navItems.map((item) => {
-          const isActive = active === item.name;
+          const isActive =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
 
           return (
-            <a
+            <Link
               key={item.name}
               href={item.href}
-              onClick={() => setActive(item.name)}
               className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 ${
                 isActive
                   ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
@@ -68,7 +72,7 @@ export default function FloatingNav() {
             >
               {item.icon}
               <span className="text-[9px] uppercase tracking-wider mt-0.5">{item.name}</span>
-            </a>
+            </Link>
           );
         })}
       </motion.nav>

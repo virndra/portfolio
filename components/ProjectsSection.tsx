@@ -2,38 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowRight } from "lucide-react";
-
-interface Project {
-  id: string;
-  name: string;
-  stars: number;
-  description: string;
-  image: string;
-  link: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: "initium",
-    name: "initium",
-    stars: 883,
-    description: "High-performance CLI application starter kit and build scaffolding system.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
-    link: "https://github.com/virndra/initium",
-  },
-  {
-    id: "cinematch",
-    name: "CineMatch",
-    stars: 2762,
-    description: "Full-stack intelligent movie recommendation engine (Flask, MySQL, Cosine Similarity).",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80",
-    link: "https://github.com/virndra",
-  },
-];
+import { PROJECTS_DATA } from "@/lib/projects-data";
 
 export default function ProjectsSection() {
+  const featuredProjects = PROJECTS_DATA.slice(0, 2);
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 15 }}
@@ -44,12 +20,12 @@ export default function ProjectsSection() {
     >
       <h2 className="font-heading text-lg text-[var(--foreground)] mb-4">Projects</h2>
 
-      {/* Grid of 2 projects */}
+      {/* Grid of featured projects */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        {PROJECTS.map((project) => (
+        {featuredProjects.map((project) => (
           <motion.a
             key={project.id}
-            href={project.link}
+            href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             whileTap={{ scale: 0.98 }}
@@ -58,18 +34,18 @@ export default function ProjectsSection() {
             {/* Light Overlay: Always visible on mobile, hover on desktop */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            {/* Corner Bracket Accents: Always visible on mobile, hover on desktop */}
+            {/* Corner Bracket Accents */}
             <span className="absolute -top-[3px] -left-[3px] w-3.5 h-3.5 border-t-2 border-l-2 border-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
             <span className="absolute -top-[3px] -right-[3px] w-3.5 h-3.5 border-t-2 border-r-2 border-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
             <span className="absolute -bottom-[3px] -left-[3px] w-3.5 h-3.5 border-b-2 border-l-2 border-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
             <span className="absolute -bottom-[3px] -right-[3px] w-3.5 h-3.5 border-b-2 border-r-2 border-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
             <div>
-              {/* Preview Image: Full color on mobile (< sm), Grayscale to color hover on desktop (>= sm) */}
+              {/* Preview Image */}
               <div className="relative w-full h-36 rounded-none overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] mb-3">
                 <Image
                   src={project.image}
-                  alt={project.name}
+                  alt={project.title}
                   fill
                   className="object-cover filter-none grayscale-0 sm:filter sm:grayscale sm:group-hover:grayscale-0 sm:group-hover:scale-105 transition-all duration-300 ease-in-out"
                 />
@@ -78,13 +54,13 @@ export default function ProjectsSection() {
               {/* Title Row */}
               <div className="flex items-center justify-between mb-1.5">
                 <h3 className="font-sans font-bold text-base text-[var(--foreground)] flex items-center gap-1.5">
-                  {project.name}
+                  {project.title}
                   <ExternalLink className="w-3.5 h-3.5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-[var(--muted)]" />
                 </h3>
               </div>
 
               {/* Description */}
-              <p className="text-xs text-[var(--muted)] font-mono leading-relaxed">
+              <p className="text-xs text-[var(--muted)] font-mono leading-relaxed line-clamp-2">
                 {project.description}
               </p>
             </div>
@@ -92,18 +68,15 @@ export default function ProjectsSection() {
         ))}
       </div>
 
-      {/* View all -> Link centered beneath grid */}
+      {/* View all -> Link centered beneath grid pointing to /projects */}
       <div className="w-full flex justify-center">
-        <motion.a
-          href="https://github.com/virndra?tab=repositories"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileTap={{ scale: 0.95 }}
+        <Link
+          href="/projects"
           className="inline-flex items-center gap-2 text-xs font-mono text-[var(--muted)] hover:text-[var(--foreground)] transition-colors duration-200 py-1 px-3 rounded-none border border-transparent hover:border-[var(--card-border)]"
         >
           <span>View all</span>
           <ArrowRight className="w-3.5 h-3.5" />
-        </motion.a>
+        </Link>
       </div>
     </motion.section>
   );
