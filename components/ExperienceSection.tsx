@@ -23,10 +23,10 @@ export default function ExperienceSection({ hideHeader = false }: ExperienceSect
       {!hideHeader && (
         <div className="mb-8">
           <h2 className="font-heading text-lg sm:text-xl text-[var(--foreground)] tracking-wider mb-1.5">
-            EXPERIENCES
+            EXPERIENCE
           </h2>
-          <p className="text-xs sm:text-sm font-mono text-[var(--muted)]">
-            My journey as a software developer over 1+ years
+          <p className="text-[10px] sm:text-xs font-mono text-[var(--muted)]">
+            here is my work experience!!
           </p>
         </div>
       )}

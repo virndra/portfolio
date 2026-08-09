@@ -12,13 +12,13 @@ interface ExperienceCardProps {
 }
 
 export default function ExperienceCard({ experience, isLast = false }: ExperienceCardProps) {
-  // Parse simple markdown bold syntax (**text**) into JSX with bold white span
+  // Parse simple markdown bold syntax (**text**) into JSX with bold contrast span
   const renderFormattedText = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
-          <strong key={index} className="font-bold text-white">
+          <strong key={index} className="font-bold text-[var(--foreground)]">
             {part.slice(2, -2)}
           </strong>
         );
@@ -30,13 +30,13 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
   const getTypeBadgeStyle = (type: ExperienceItem["type"]) => {
     switch (type) {
       case "Internship":
-        return "bg-amber-950/50 text-amber-300 border-amber-600/40";
+        return "bg-amber-100/80 text-amber-800 border-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-600/40";
       case "Freelance":
-        return "bg-emerald-950/50 text-emerald-300 border-emerald-600/40";
+        return "bg-emerald-100/80 text-emerald-800 border-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-600/40";
       case "Client Work":
-        return "bg-purple-950/50 text-purple-300 border-purple-600/40";
+        return "bg-purple-100/80 text-purple-800 border-purple-300 dark:bg-purple-950/50 dark:text-purple-300 dark:border-purple-600/40";
       default:
-        return "bg-neutral-800 text-neutral-300 border-neutral-700";
+        return "bg-neutral-200 text-neutral-800 border-neutral-300 dark:bg-neutral-800 dark:text-neutral-300 dark:border-neutral-700";
     }
   };
 
@@ -45,11 +45,11 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
       {/* Left Timeline Line & Dot Container */}
       <div className="relative flex flex-col items-center">
         {/* Timeline Dot */}
-        <div className="w-3.5 h-3.5 rounded-full bg-neutral-600 border-2 border-[#0a0a0a] group-hover:bg-white group-hover:scale-125 transition-all duration-300 z-10 mt-1" />
+        <div className="w-3.5 h-3.5 rounded-full bg-neutral-400 dark:bg-neutral-600 border-2 border-white dark:border-[#0a0a0a] group-hover:bg-neutral-900 dark:group-hover:bg-white group-hover:scale-125 transition-all duration-300 z-10 mt-1" />
         
         {/* Vertical Line */}
         {!isLast && (
-          <div className="w-[1px] bg-neutral-800 group-hover:bg-neutral-700 transition-colors duration-300 flex-1 my-1" />
+          <div className="w-[1px] bg-neutral-300 dark:bg-neutral-800 group-hover:bg-neutral-400 dark:group-hover:bg-neutral-700 transition-colors duration-300 flex-1 my-1" />
         )}
       </div>
 
@@ -66,7 +66,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
           {/* Left Header Info */}
           <div className="flex items-center gap-2.5">
             {/* Company Logo */}
-            <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-[#121214] border border-white/10 flex-shrink-0">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-neutral-100 dark:bg-[#121214] border border-black/10 dark:border-white/10 flex-shrink-0">
               <Image
                 src={experience.logo}
                 alt={experience.company}
@@ -77,7 +77,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-mono font-bold text-sm sm:text-base text-white">
+                <h3 className="font-mono font-bold text-sm sm:text-base text-[var(--foreground)]">
                   {experience.company}
                 </h3>
                 <span
@@ -88,7 +88,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
                   {experience.type}
                 </span>
               </div>
-              <p className="text-xs font-mono text-neutral-400 mt-0.5">
+              <p className="text-xs font-mono text-[var(--muted)] mt-0.5">
                 {experience.role}
               </p>
             </div>
@@ -96,10 +96,10 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
           {/* Right Header Info: Date & Work Mode */}
           <div className="text-left sm:text-right font-mono flex-shrink-0">
-            <div className="text-[11px] font-medium text-neutral-300">
+            <div className="text-[11px] font-medium text-slate-700 dark:text-neutral-300">
               {experience.startDate} - {experience.endDate}
             </div>
-            <div className="text-[10px] text-neutral-500 mt-0.5">
+            <div className="text-[10px] text-[var(--muted)] mt-0.5">
               {experience.workMode}
             </div>
           </div>
@@ -107,13 +107,13 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
         {/* Work Responsibilities Section */}
         <div className="mt-3">
-          <h4 className="text-[10px] font-mono font-bold tracking-widest text-neutral-400 uppercase mb-2">
+          <h4 className="text-[10px] font-mono font-bold tracking-widest text-[var(--muted)] uppercase mb-2">
             WORK
           </h4>
-          <ul className="space-y-2 text-[11px] font-mono text-neutral-300 leading-relaxed">
+          <ul className="space-y-2 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 leading-relaxed">
             {experience.responsibilities.map((resp, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-neutral-500 select-none mt-0.5">•</span>
+                <span className="text-neutral-400 dark:text-neutral-500 select-none mt-0.5">•</span>
                 <span className="flex-1">{renderFormattedText(resp)}</span>
               </li>
             ))}
@@ -122,7 +122,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
         {/* Technology Used Section */}
         <div className="mt-4">
-          <h4 className="text-[10px] font-mono font-bold tracking-widest text-neutral-400 uppercase mb-2">
+          <h4 className="text-[10px] font-mono font-bold tracking-widest text-[var(--muted)] uppercase mb-2">
             TECHNOLOGY USED
           </h4>
           <div className="flex flex-wrap gap-1.5">

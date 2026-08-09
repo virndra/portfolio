@@ -1,26 +1,26 @@
 import React from "react";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
-import ExperienceSection from "@/components/ExperienceSection";
+import BlogsSection from "@/components/BlogsSection";
 
 export const metadata = {
-  title: "Experience | Veerendra Pradeep",
-  description: "Work experience and AI internship background of Veerendra Pradeep.",
+  title: "Blogs | Veerendra Pradeep",
+  description: "Latest technical articles, system design guides, and tutorials by Veerendra Pradeep.",
 };
 
-export default function ExperiencePage() {
+export default function BlogsPage() {
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] bg-dot-pattern transition-colors duration-300">
       <main className="max-w-2xl mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between pt-4 pb-32">
         <div>
           {/* Top Bar with Resume & Theme toggle */}
           <TopBar
-            title="EXPERIENCE"
-            subtitle="here is my work experience!!"
+            title="BLOGS"
+            subtitle="Latest articles and tutorials"
           />
 
-          {/* Main Experience Timeline Container */}
-          <ExperienceSection hideHeader={true} />
+          {/* Main Blogs Section */}
+          <BlogsSection hideHeader={true} />
         </div>
 
         {/* Footer */}

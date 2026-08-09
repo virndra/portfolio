@@ -32,7 +32,7 @@ export default function FloatingNav() {
     { name: "Home", icon: <Home className="w-[18px] h-[18px] mb-1" />, href: "/" },
     { name: "Projects", icon: <Terminal className="w-[18px] h-[18px] mb-1" />, href: "/projects" },
     { name: "Experience", icon: <Briefcase className="w-[18px] h-[18px] mb-1" />, href: "/experience" },
-    { name: "Blogs", icon: <BookOpen className="w-[18px] h-[18px] mb-1" />, href: "/#blogs" },
+    { name: "Blogs", icon: <BookOpen className="w-[18px] h-[18px] mb-1" />, href: "/blogs" },
   ];
 
   if (!mounted) return null;
@@ -66,8 +66,8 @@ export default function FloatingNav() {
               href={item.href}
               className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none select-none ${
                 isActive
-                  ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
-                  : "text-neutral-500 font-medium hover:text-white/90"
+                  ? "text-neutral-900 dark:text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
+                  : "text-neutral-600 dark:text-neutral-500 font-medium hover:text-black dark:hover:text-white/90"
               }`}
             >
               {item.icon}

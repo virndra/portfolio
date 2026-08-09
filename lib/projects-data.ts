@@ -93,49 +93,49 @@ export const PROJECTS_DATA: ProjectItem[] = [
 export function getTechBadgeStyle(tech: string) {
   const t = tech.toLowerCase();
   if (t.includes("typescript") || t === "ts") {
-    return "bg-[#00274d]/80 text-[#3178c6] border-[#3178c6]/40";
+    return "bg-blue-50 text-blue-700 border-blue-200 dark:bg-[#00274d]/80 dark:text-[#3178c6] dark:border-[#3178c6]/40";
   }
   if (t.includes("react")) {
-    return "bg-[#002b36]/80 text-[#61dafb] border-[#61dafb]/40";
+    return "bg-sky-50 text-sky-700 border-sky-200 dark:bg-[#002b36]/80 dark:text-[#61dafb] dark:border-[#61dafb]/40";
   }
   if (t.includes("next")) {
-    return "bg-[#1a1a1a]/80 text-white border-white/40";
+    return "bg-neutral-100 text-neutral-900 border-neutral-300 dark:bg-[#1a1a1a]/80 dark:text-white dark:border-white/40";
   }
   if (t.includes("node")) {
-    return "bg-[#0d2b18]/80 text-[#539e43] border-[#539e43]/40";
+    return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-[#0d2b18]/80 dark:text-[#539e43] dark:border-[#539e43]/40";
   }
   if (t.includes("python")) {
-    return "bg-[#1a2b3c]/80 text-[#3776ab] border-[#3776ab]/40";
+    return "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-[#1a2b3c]/80 dark:text-[#3776ab] dark:border-[#3776ab]/40";
   }
   if (t.includes("fastapi")) {
-    return "bg-[#052b27]/80 text-[#059669] border-[#059669]/40";
+    return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-[#052b27]/80 dark:text-[#059669] dark:border-[#059669]/40";
   }
   if (t.includes("pytorch")) {
-    return "bg-[#341712]/80 text-[#ee4c2c] border-[#ee4c2c]/40";
+    return "bg-orange-50 text-orange-700 border-orange-200 dark:bg-[#341712]/80 dark:text-[#ee4c2c] dark:border-[#ee4c2c]/40";
   }
   if (t.includes("c11") || t === "c") {
-    return "bg-[#1a2634]/80 text-[#a8b9cc] border-[#a8b9cc]/40";
+    return "bg-slate-100 text-slate-700 border-slate-300 dark:bg-[#1a2634]/80 dark:text-[#a8b9cc] dark:border-[#a8b9cc]/40";
   }
   if (t.includes("langgraph") || t.includes("claude") || t.includes("anthropic")) {
-    return "bg-[#241335]/80 text-[#a855f7] border-[#a855f7]/40";
+    return "bg-purple-50 text-purple-700 border-purple-200 dark:bg-[#241335]/80 dark:text-[#a855f7] dark:border-[#a855f7]/40";
   }
   if (t.includes("streamlit")) {
-    return "bg-[#33151b]/80 text-[#ff4b4b] border-[#ff4b4b]/40";
+    return "bg-rose-50 text-rose-700 border-rose-200 dark:bg-[#33151b]/80 dark:text-[#ff4b4b] dark:border-[#ff4b4b]/40";
   }
   if (t.includes("opencv")) {
-    return "bg-[#142338]/80 text-[#5c3ee8] border-[#5c3ee8]/40";
+    return "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-[#142338]/80 dark:text-[#5c3ee8] dark:border-[#5c3ee8]/40";
   }
   if (t.includes("scikit") || t.includes("pandas") || t.includes("numpy") || t.includes("nltk")) {
-    return "bg-[#332211]/80 text-[#f7931e] border-[#f7931e]/40";
+    return "bg-amber-50 text-amber-700 border-amber-200 dark:bg-[#332211]/80 dark:text-[#f7931e] dark:border-[#f7931e]/40";
   }
   if (t.includes("supabase")) {
-    return "bg-[#0d2b1e]/80 text-[#3ecf8e] border-[#3ecf8e]/40";
+    return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-[#0d2b1e]/80 dark:text-[#3ecf8e] dark:border-[#3ecf8e]/40";
   }
   if (t.includes("tailwind")) {
-    return "bg-[#0d2730]/80 text-[#38bdf8] border-[#38bdf8]/40";
+    return "bg-sky-50 text-sky-700 border-sky-200 dark:bg-[#0d2730]/80 dark:text-[#38bdf8] dark:border-[#38bdf8]/40";
   }
   if (t.includes("docker")) {
-    return "bg-[#0d233a]/80 text-[#2496ed] border-[#2496ed]/40";
+    return "bg-sky-50 text-sky-700 border-sky-200 dark:bg-[#0d233a]/80 dark:text-[#2496ed] dark:border-[#2496ed]/40";
   }
-  return "bg-[#1f1f24]/80 text-[#a1a1aa] border-white/20";
+  return "bg-neutral-100 text-neutral-700 border-neutral-300 dark:bg-[#1f1f24]/80 dark:text-[#a1a1aa] dark:border-white/20";
 }

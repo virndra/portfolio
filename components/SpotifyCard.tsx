@@ -174,7 +174,7 @@ export default function SpotifyCard() {
 
       <div className="w-full rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,0,0,0.4)]">
         {/* Header Row */}
-        <div className="flex items-center justify-between px-4 sm:px-5 pt-3.5 pb-2 border-b border-[var(--card-border)]/50 bg-black/20 text-xs font-mono text-[var(--muted)]">
+        <div className="flex items-center justify-between px-4 sm:px-5 pt-3.5 pb-2 border-b border-[var(--card-border)]/50 bg-black/5 dark:bg-black/20 text-xs font-mono text-[var(--muted)]">
           <div className="flex items-center gap-2">
             <SpotifyIcon className={`w-4 h-4 text-[#1DB954] ${isAudioPlaying ? "animate-pulse" : ""}`} />
             <span className="tracking-widest uppercase text-[11px] font-semibold text-[var(--muted)]">
@@ -262,7 +262,7 @@ export default function SpotifyCard() {
               <button
                 type="button"
                 onClick={toggleMute}
-                className="p-2 rounded-full text-[var(--muted)] hover:text-white transition-colors"
+                className="p-2 rounded-full text-[var(--muted)] hover:text-neutral-900 dark:hover:text-white transition-colors"
                 title={isMuted ? "Unmute Audio" : "Mute Audio"}
               >
                 {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}

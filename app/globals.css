@@ -15,15 +15,15 @@
 }
 
 html.light {
-  --background: #f7f7f7;
-  --foreground: #121212;
-  --muted: #6b7280;
+  --background: #fafafa;
+  --foreground: #0f172a;
+  --muted: #475569;
   --card-bg: #ffffff;
-  --card-border: #e5e7eb;
-  --card-hover-border: #737373;
-  --dot-color: rgba(0, 0, 0, 0.08);
+  --card-border: #e2e8f0;
+  --card-hover-border: #64748b;
+  --dot-color: rgba(15, 23, 42, 0.08);
   --signature-filter: invert(1) brightness(0.2);
-  --heatmap-empty: #ebedf0;
+  --heatmap-empty: #e2e8f0;
 }
 
 @theme inline {

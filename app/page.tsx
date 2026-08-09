@@ -6,6 +6,7 @@ import SocialLinks from "@/components/SocialLinks";
 import SpotifyCard from "@/components/SpotifyCard";
 import GitContributions from "@/components/GitContributions";
 import ProjectsSection from "@/components/ProjectsSection";
+import BlogsSection from "@/components/BlogsSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -33,9 +34,12 @@ export default function Home() {
 
           {/* Section 5.7: Projects */}
           <ProjectsSection />
+
+          {/* Section 5.8: Blogs */}
+          <BlogsSection />
         </div>
 
-        {/* Section 5.8: Footer */}
+        {/* Section 5.9: Footer */}
         <Footer />
       </main>
     </div>

@@ -100,15 +100,15 @@ export default function GitContributions() {
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
-        return "bg-[#52525b] border border-white/[0.08]";
+        return "bg-[#d4d4d8] border border-black/[0.08] dark:bg-[#52525b] dark:border-white/[0.08]";
       case 2:
-        return "bg-[#a1a1aa] border border-white/[0.12]";
+        return "bg-[#a1a1aa] border border-black/[0.12] dark:bg-[#a1a1aa] dark:border-white/[0.12]";
       case 3:
-        return "bg-[#e4e4e7] border border-white/[0.2]";
+        return "bg-[#52525b] border border-black/[0.2] dark:bg-[#e4e4e7] dark:border-white/[0.2]";
       case 4:
-        return "bg-[#ffffff] border border-white shadow-[0_0_8px_rgba(255,255,255,0.6)]";
+        return "bg-[#18181b] border border-black dark:bg-[#ffffff] dark:border-white dark:shadow-[0_0_8px_rgba(255,255,255,0.6)]";
       default:
-        return "bg-[#222226] border border-white/[0.03]";
+        return "bg-[#ebedf0] border border-black/[0.05] dark:bg-[#222226] dark:border-white/[0.03]";
     }
   };
 
@@ -180,7 +180,7 @@ export default function GitContributions() {
           <div className="font-medium min-h-[20px] flex items-center">
             {hoveredDay ? (
               <span className="transition-opacity duration-200">
-                <strong className="font-semibold text-white">
+                <strong className="font-semibold text-neutral-900 dark:text-white">
                   {hoveredDay.count === 0 ? "No" : hoveredDay.count}
                 </strong>{" "}
                 {hoveredDay.count === 1 ? "contribution" : "contributions"} on{" "}

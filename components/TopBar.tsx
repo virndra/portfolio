@@ -47,7 +47,7 @@ export default function TopBar({ title, subtitle, showGreeting = true }: TopBarP
             {title}
           </h1>
           {subtitle && (
-            <p className="text-xs sm:text-sm font-mono text-[var(--muted)] mt-0.5">
+            <p className="text-[11px] sm:text-xs font-mono text-[var(--muted)] mt-0.5">
               {subtitle}
             </p>
           )}
