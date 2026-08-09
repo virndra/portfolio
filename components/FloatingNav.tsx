@@ -19,10 +19,10 @@ export default function FloatingNav() {
   useEffect(() => {
     if (navRef.current && mounted) {
       const glass = liquidGlass(navRef.current, {
-        scale: -120, // Strong refraction around the edges
-        blur: 0, // 100% transparent, no blur inside
+        scale: -12, // Subtle, clean edge refraction without text distortion
+        blur: 0, // 100% transparent, crisp text inside
         mapBlur: 12, // Smooth curve on the edge
-        saturate: 1, // No artificial saturation
+        saturate: 1, // Clean natural colors
       });
       return () => glass.destroy();
     }
