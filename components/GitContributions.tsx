@@ -21,7 +21,7 @@ export default function GitContributions() {
         if (res.ok) {
           const data = await res.json();
           setContributions(data.days || []);
-          setTotalContributions(data.totalContributions || 39);
+          setTotalContributions(typeof data.totalContributions === "number" ? data.totalContributions : 0);
         }
       } catch (err) {
         console.error("Failed to load GitHub calendar:", err);
@@ -30,54 +30,85 @@ export default function GitContributions() {
     fetchGitHubData();
   }, []);
 
-  // Filter or generate 364 days specifically for calendar year 2026 starting Jan 1, 2026
-  const daysToDisplay: ContributionDay[] = contributions.length > 0
-    ? contributions.filter((d) => d.date.startsWith("2026")).length > 0
-      ? contributions.filter((d) => d.date.startsWith("2026"))
-      : contributions.slice(-364)
-    : Array.from({ length: 364 }).map((_, i) => {
-        const d = new Date(Date.UTC(2026, 0, 1 + i));
-        const count = i % 19 === 0 ? 9 : i % 11 === 0 ? 5 : i % 7 === 0 ? 3 : i % 4 === 0 ? 1 : 0;
-        const level = count > 8 ? 4 : count > 4 ? 3 : count > 2 ? 2 : count > 0 ? 1 : 0;
-        return {
-          date: d.toISOString().split("T")[0],
-          count,
-          level,
-        };
-      });
+  const currentYear = new Date().getFullYear();
+  const yearStr = currentYear.toString();
 
-  // Calculate month label positions matching exact react-activity-calendar 16px column steps
-  const weeksCount = Math.floor(daysToDisplay.length / 7);
-  const monthLabelPositions: { monthName: string; pixelX: number }[] = [];
-  let lastMonth = "";
-
-  for (let w = 0; w < weeksCount; w++) {
-    const day = daysToDisplay[w * 7];
-    if (day && day.date) {
-      const [year, month, dayNum] = day.date.split("-").map(Number);
-      const dateObj = new Date(Date.UTC(year, month - 1, dayNum));
-      const monthName = dateObj.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
-      if (monthName !== lastMonth) {
-        monthLabelPositions.push({ monthName, pixelX: w * 16 });
-        lastMonth = monthName;
+  // Filter and pad days for current calendar year so Jan 1 aligns with its exact weekday
+  const { daysToDisplay, monthLabelPositions } = React.useMemo(() => {
+    let yearDays: ContributionDay[] = [];
+    if (contributions.length > 0) {
+      yearDays = contributions.filter((d) => d.date.startsWith(yearStr));
+      if (yearDays.length > 0) {
+        yearDays = [...yearDays].sort((a, b) => a.date.localeCompare(b.date));
       }
     }
-  }
 
-  // Exact colors & stroke matching react-activity-calendar HTML snippet:
-  // Level 0: #383838, Level 1: #606060, Level 2: #8C8C8C, Level 3: #BABABA, Level 4: #EBEBEB
+    if (yearDays.length === 0) {
+      yearDays = Array.from({ length: 365 }).map((_, i) => {
+        const d = new Date(Date.UTC(currentYear, 0, 1 + i));
+        return {
+          date: d.toISOString().split("T")[0],
+          count: 0,
+          level: 0,
+        };
+      });
+    }
+
+    // Pad beginning of year so Jan 1 sits on its correct weekday row (0=Sun, 1=Mon, ..., 6=Sat)
+    const firstDateStr = yearDays[0].date;
+    const [y, m, dn] = firstDateStr.split("-").map(Number);
+    const firstDate = new Date(Date.UTC(y, m - 1, dn));
+    const padCount = firstDate.getUTCDay();
+
+    const padded: ContributionDay[] = [];
+    for (let i = padCount; i > 0; i--) {
+      const dt = new Date(Date.UTC(y, m - 1, dn - i));
+      padded.push({
+        date: dt.toISOString().split("T")[0],
+        count: 0,
+        level: 0,
+      });
+    }
+    padded.push(...yearDays);
+
+    // Calculate month label positions matching 16px column steps
+    const weeksCount = Math.ceil(padded.length / 7);
+    const monthPositions: { monthName: string; pixelX: number }[] = [];
+    let lastMonth = "";
+
+    for (let w = 0; w < weeksCount; w++) {
+      const day = padded[w * 7];
+      if (day && day.date) {
+        const [year, month, dayNum] = day.date.split("-").map(Number);
+        const dateObj = new Date(Date.UTC(year, month - 1, dayNum));
+        const monthName = dateObj.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+        if (monthName !== lastMonth) {
+          if (year === currentYear) {
+            monthPositions.push({ monthName, pixelX: w * 16 });
+          }
+          lastMonth = monthName;
+        }
+      }
+    }
+
+    return { daysToDisplay: padded, monthLabelPositions: monthPositions };
+  }, [contributions, yearStr, currentYear]);
+
+  // Enhanced high-contrast level colors:
+  // Level 0: subtle dark gray (#222226)
+  // Level 1-4: distinct bright gray/white levels that pop out clearly
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
-        return "bg-[#606060] border border-white/[0.04]";
+        return "bg-[#52525b] border border-white/[0.08]";
       case 2:
-        return "bg-[#8C8C8C] border border-white/[0.04]";
+        return "bg-[#a1a1aa] border border-white/[0.12]";
       case 3:
-        return "bg-[#BABABA] border border-white/[0.04]";
+        return "bg-[#e4e4e7] border border-white/[0.2]";
       case 4:
-        return "bg-[#EBEBEB] border border-white/[0.04] shadow-[0_0_6px_rgba(255,255,255,0.3)]";
+        return "bg-[#ffffff] border border-white shadow-[0_0_8px_rgba(255,255,255,0.6)]";
       default:
-        return "bg-[#383838] border border-white/[0.04]";
+        return "bg-[#222226] border border-white/[0.03]";
     }
   };
 
@@ -163,11 +194,11 @@ export default function GitContributions() {
           </div>
           <div className="flex items-center gap-1.5 text-xs text-[var(--muted)] self-end sm:self-auto">
             <span className="text-[var(--foreground)]">Less</span>
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-[#383838] border border-white/[0.04]" />
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-[#606060] border border-white/[0.04]" />
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-[#8C8C8C] border border-white/[0.04]" />
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-[#BABABA] border border-white/[0.04]" />
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-[#EBEBEB] border border-white/[0.04]" />
+            <div className={`w-[12px] h-[12px] rounded-[2px] ${getLevelColor(0)}`} />
+            <div className={`w-[12px] h-[12px] rounded-[2px] ${getLevelColor(1)}`} />
+            <div className={`w-[12px] h-[12px] rounded-[2px] ${getLevelColor(2)}`} />
+            <div className={`w-[12px] h-[12px] rounded-[2px] ${getLevelColor(3)}`} />
+            <div className={`w-[12px] h-[12px] rounded-[2px] ${getLevelColor(4)}`} />
             <span className="text-[var(--foreground)]">More</span>
           </div>
         </div>
