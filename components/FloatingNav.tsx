@@ -31,7 +31,7 @@ export default function FloatingNav() {
   const navItems = [
     { name: "Home", icon: <Home className="w-[18px] h-[18px] mb-1" />, href: "/" },
     { name: "Projects", icon: <Terminal className="w-[18px] h-[18px] mb-1" />, href: "/projects" },
-    { name: "Experience", icon: <Briefcase className="w-[18px] h-[18px] mb-1" />, href: "/#experience" },
+    { name: "Experience", icon: <Briefcase className="w-[18px] h-[18px] mb-1" />, href: "/experience" },
     { name: "Blogs", icon: <BookOpen className="w-[18px] h-[18px] mb-1" />, href: "/#blogs" },
   ];
 
@@ -64,10 +64,11 @@ export default function FloatingNav() {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 ${isActive
-                ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
-                : "text-neutral-500 font-medium hover:text-white/80"
-                }`}
+              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none select-none ${
+                isActive
+                  ? "text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
+                  : "text-neutral-500 font-medium hover:text-white/90"
+              }`}
             >
               {item.icon}
               <span className="text-[9px] uppercase tracking-wider mt-0.5">{item.name}</span>
