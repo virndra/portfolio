@@ -22,12 +22,12 @@ export default function AboutSection() {
 
         {/* Paragraph 1 */}
         <p>
-          a 21 year old guy, who was passionate about software engineering, currently learning CUDA and ML Infra.
+          a 21 year old guy, who was passionate about software engineering, currently learning CUDA and ML Infra and currently working on llm's.
         </p>
 
         {/* Paragraph 2 */}
         <p>
-          TECH STACK: Python, C, C++, JavaScript/TypeScript, React, Next.js, Node.js, CUDA, SQL, ML Infra, Rust.
+          TECH STACK: Python, C, C++, JavaScript/TypeScript, React, Next.js, Node.js, SQL, Supabase, Cloudflare, GenAI, Machine Learning, LLM's, Rust, Go.
         </p>
       </div>
     </motion.section>
