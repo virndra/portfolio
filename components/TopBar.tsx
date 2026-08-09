@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { usePathname } from "next/navigation";
-import { FileText, Sun, Moon } from "lucide-react";
+import { FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface TopBarProps {
@@ -14,27 +14,6 @@ interface TopBarProps {
 export default function TopBar({ title, subtitle, showGreeting = true }: TopBarProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    if (document.documentElement.classList.contains("light")) {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (theme === "dark") {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-    } else {
-      setTheme("dark");
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-    }
-  };
 
   return (
     <motion.header
@@ -64,7 +43,7 @@ export default function TopBar({ title, subtitle, showGreeting = true }: TopBarP
         <div />
       )}
 
-      {/* Right side: Resume button + Theme toggle button aligned on the same line */}
+      {/* Right side: Resume button */}
       <div className="flex items-center gap-3">
         {isHome ? (
           <a
@@ -90,21 +69,6 @@ export default function TopBar({ title, subtitle, showGreeting = true }: TopBarP
             <FileText className="w-4 h-4" />
           </a>
         )}
-
-        {/* Theme Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          id="theme-toggle-button"
-          title={`Switch to ${theme === "dark" ? "Light" : "Dark"} mode`}
-          aria-label="Toggle Theme"
-          className="w-8 h-8 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--foreground)] hover:border-[var(--card-hover-border)] transition-all duration-200 group"
-        >
-          {theme === "dark" ? (
-            <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
-          ) : (
-            <Moon className="w-4 h-4 text-indigo-500 group-hover:-rotate-12 transition-transform duration-300" />
-          )}
-        </button>
       </div>
     </motion.header>
   );

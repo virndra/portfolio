@@ -46,7 +46,7 @@ export default function HeroSection() {
         <div className="relative w-32 h-32 sm:w-44 sm:h-44 flex items-center justify-center group cursor-pointer">
           {/* Outer Ring: Exactly 15 dashed segments rotating smoothly */}
           <svg
-            className="absolute inset-0 w-full h-full text-black/25 dark:text-white/25 opacity-55 animate-[spin_25s_linear_infinite]"
+            className="absolute inset-0 w-full h-full text-neutral-800 dark:text-white/30 opacity-90 animate-[spin_25s_linear_infinite]"
             viewBox="0 0 100 100"
           >
             <circle
@@ -55,14 +55,14 @@ export default function HeroSection() {
               r="47"
               fill="none"
               stroke="currentColor"
-              strokeWidth="0.6"
+              strokeWidth="1.2"
               strokeDasharray="12.80 6.89"
             />
           </svg>
 
           {/* Inner Ring: Exactly 3 inner arc segments rotating in reverse */}
           <svg
-            className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] text-black/30 dark:text-white/30 opacity-100 animate-[spin_30s_linear_infinite_reverse]"
+            className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] text-neutral-900 dark:text-white/40 opacity-100 animate-[spin_30s_linear_infinite_reverse]"
             viewBox="0 0 100 100"
           >
             <circle
@@ -71,7 +71,7 @@ export default function HeroSection() {
               r="47"
               fill="none"
               stroke="currentColor"
-              strokeWidth="0.7"
+              strokeWidth="1.2"
               strokeDasharray="44.30 54.14"
             />
           </svg>

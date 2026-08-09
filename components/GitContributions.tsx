@@ -94,21 +94,19 @@ export default function GitContributions() {
     return { daysToDisplay: padded, monthLabelPositions: monthPositions };
   }, [contributions, yearStr, currentYear]);
 
-  // Enhanced high-contrast level colors:
-  // Level 0: subtle dark gray (#222226)
-  // Level 1-4: distinct bright gray/white levels that pop out clearly
+  // Authentic GitHub green contribution level colors:
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
-        return "bg-[#d4d4d8] border border-black/[0.08] dark:bg-[#52525b] dark:border-white/[0.08]";
+        return "bg-[#9be9a8] border border-emerald-300/40 dark:bg-[#0e4429] dark:border-emerald-900/40";
       case 2:
-        return "bg-[#a1a1aa] border border-black/[0.12] dark:bg-[#a1a1aa] dark:border-white/[0.12]";
+        return "bg-[#40c463] border border-emerald-400/40 dark:bg-[#006d32] dark:border-emerald-800/40";
       case 3:
-        return "bg-[#52525b] border border-black/[0.2] dark:bg-[#e4e4e7] dark:border-white/[0.2]";
+        return "bg-[#30a14e] border border-emerald-500/40 dark:bg-[#26a641] dark:border-emerald-600/40";
       case 4:
-        return "bg-[#18181b] border border-black dark:bg-[#ffffff] dark:border-white dark:shadow-[0_0_8px_rgba(255,255,255,0.6)]";
+        return "bg-[#216e39] border border-emerald-600 dark:bg-[#39d353] dark:border-emerald-400 dark:shadow-[0_0_8px_rgba(57,211,83,0.5)]";
       default:
-        return "bg-[#ebedf0] border border-black/[0.05] dark:bg-[#222226] dark:border-white/[0.03]";
+        return "bg-[#ebedf0] border border-black/[0.05] dark:bg-[#161b22] dark:border-white/[0.03]";
     }
   };
 

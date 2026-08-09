@@ -45,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div>
         {/* Category & Status Row */}
         <div className="flex items-center justify-between gap-2 mb-2">
-          <span className="text-[11px] font-mono text-neutral-600 dark:text-[#8a8a93] truncate">
+          <span className="text-[11px] font-mono text-neutral-800 dark:text-[#8a8a93] font-semibold truncate">
             {project.category}
           </span>
           <span
@@ -58,13 +58,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Project Title */}
-        <h3 className="font-sans font-bold text-base sm:text-lg text-[var(--foreground)] mb-2 tracking-tight flex items-center justify-between">
+        <h3 className="font-sans font-bold text-base sm:text-lg text-neutral-950 dark:text-white mb-2 tracking-tight flex items-center justify-between">
           <span>{project.title}</span>
-          <ExternalLink className="w-4 h-4 text-[var(--muted)] opacity-0 group-hover:opacity-100 group-hover:text-[var(--foreground)] transition-all duration-200" />
+          <ExternalLink className="w-4 h-4 text-neutral-700 dark:text-[#8a8a93] opacity-0 group-hover:opacity-100 group-hover:text-black dark:group-hover:text-white transition-all duration-200" />
         </h3>
 
         {/* Description */}
-        <p className="text-xs text-[var(--muted)] font-mono leading-relaxed mb-4 min-h-[56px]">
+        <p className="text-xs text-neutral-900 dark:text-[#909095] font-mono leading-relaxed mb-4 min-h-[56px] font-medium">
           {project.description}
         </p>
       </div>

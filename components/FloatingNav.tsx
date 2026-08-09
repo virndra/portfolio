@@ -44,13 +44,11 @@ export default function FloatingNav() {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, type: "spring", stiffness: 260, damping: 20 }}
-        className="flex items-center gap-1 p-2 rounded-full"
+        className="flex items-center gap-1 p-2 rounded-full border border-neutral-300/80 dark:border-white/20 bg-white/90 dark:bg-transparent shadow-xl backdrop-blur-md"
         style={{
-          background: "transparent", // 100% transparent background
           boxShadow: `
-            0 20px 40px rgba(0, 0, 0, 0.2),
-            inset 0 1px 1px rgba(255, 255, 255, 0.5),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.2)
+            0 20px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 1px rgba(255, 255, 255, 0.6)
           `,
         }}
       >
@@ -66,8 +64,8 @@ export default function FloatingNav() {
               href={item.href}
               className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none select-none ${
                 isActive
-                  ? "text-neutral-900 dark:text-white font-bold -translate-y-1 scale-110 drop-shadow-md"
-                  : "text-neutral-600 dark:text-neutral-500 font-medium hover:text-black dark:hover:text-white/90"
+                  ? "text-black dark:text-white font-extrabold -translate-y-1 scale-110 drop-shadow-md"
+                  : "text-neutral-700 dark:text-neutral-400 font-semibold hover:text-black dark:hover:text-white"
               }`}
             >
               {item.icon}

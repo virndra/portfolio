@@ -77,7 +77,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-mono font-bold text-sm sm:text-base text-[var(--foreground)]">
+                <h3 className="font-mono font-bold text-sm sm:text-base text-neutral-950 dark:text-white">
                   {experience.company}
                 </h3>
                 <span
@@ -88,7 +88,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
                   {experience.type}
                 </span>
               </div>
-              <p className="text-xs font-mono text-[var(--muted)] mt-0.5">
+              <p className="text-xs font-mono text-neutral-700 dark:text-neutral-400 mt-0.5">
                 {experience.role}
               </p>
             </div>
@@ -96,10 +96,10 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
           {/* Right Header Info: Date & Work Mode */}
           <div className="text-left sm:text-right font-mono flex-shrink-0">
-            <div className="text-[11px] font-medium text-slate-700 dark:text-neutral-300">
+            <div className="text-[11px] font-semibold text-neutral-800 dark:text-neutral-300">
               {experience.startDate} - {experience.endDate}
             </div>
-            <div className="text-[10px] text-[var(--muted)] mt-0.5">
+            <div className="text-[10px] text-neutral-600 dark:text-neutral-400 mt-0.5">
               {experience.workMode}
             </div>
           </div>
@@ -107,13 +107,13 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
         {/* Work Responsibilities Section */}
         <div className="mt-3">
-          <h4 className="text-[10px] font-mono font-bold tracking-widest text-[var(--muted)] uppercase mb-2">
+          <h4 className="text-[10px] font-mono font-bold tracking-widest text-neutral-800 dark:text-neutral-400 uppercase mb-2">
             WORK
           </h4>
-          <ul className="space-y-2 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <ul className="space-y-2 text-[11px] font-mono text-neutral-900 dark:text-neutral-300 leading-relaxed font-medium">
             {experience.responsibilities.map((resp, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-neutral-400 dark:text-neutral-500 select-none mt-0.5">•</span>
+                <span className="text-neutral-600 dark:text-neutral-500 select-none mt-0.5">•</span>
                 <span className="flex-1">{renderFormattedText(resp)}</span>
               </li>
             ))}
@@ -122,7 +122,7 @@ export default function ExperienceCard({ experience, isLast = false }: Experienc
 
         {/* Technology Used Section */}
         <div className="mt-4">
-          <h4 className="text-[10px] font-mono font-bold tracking-widest text-[var(--muted)] uppercase mb-2">
+          <h4 className="text-[10px] font-mono font-bold tracking-widest text-neutral-800 dark:text-neutral-400 uppercase mb-2">
             TECHNOLOGY USED
           </h4>
           <div className="flex flex-wrap gap-1.5">
