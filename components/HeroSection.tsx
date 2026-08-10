@@ -44,7 +44,7 @@ export default function HeroSection() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="relative flex-shrink-0 self-center"
       >
-        <div className="relative w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center group cursor-pointer">
+        <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center group cursor-pointer">
           {/* Outer Ring: Exactly 13 dashed segments rotating smoothly */}
           <svg
             className="absolute inset-0 w-full h-full text-white/30 opacity-90 animate-[spin_45s_linear_infinite]"
@@ -78,7 +78,7 @@ export default function HeroSection() {
           </svg>
 
           {/* Profile Image Container */}
-          <div className="relative w-20 h-20 sm:w-32 sm:h-32 rounded-full p-1 bg-[var(--card-bg)] border border-[var(--card-border)] shadow-xl overflow-hidden">
+          <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full p-1 bg-[var(--card-bg)] border border-[var(--card-border)] shadow-xl overflow-hidden">
             <div className="relative w-full h-full rounded-full overflow-hidden">
               <Image
                 src="/profile_pic.jpeg"

@@ -62,11 +62,10 @@ export default function FloatingNav() {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none select-none ${
-                isActive
+              className={`relative flex flex-col items-center justify-center w-16 h-[52px] rounded-2xl transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none select-none ${isActive
                   ? "text-black dark:text-white font-extrabold -translate-y-1 scale-110 drop-shadow-md"
                   : "text-neutral-700 dark:text-neutral-400 font-semibold hover:text-black dark:hover:text-white"
-              }`}
+                }`}
             >
               {item.icon}
               <span className="text-[9px] uppercase tracking-wider mt-0.5">{item.name}</span>
