@@ -22,7 +22,7 @@ export default function HeroSection() {
         </div>
 
         {/* Heading Name */}
-        <h1 className="text-xl sm:text-3xl lg:text-4xl tracking-wide text-[var(--foreground)] mb-2 sm:mb-3 font-sans font-bold leading-snug">
+        <h1 className="text-[27px] sm:text-3xl lg:text-4xl tracking-wide text-[var(--foreground)] mb-2 sm:mb-3 font-sans font-bold leading-snug">
           <span className="inline-block sm:inline">𝐕𝐄𝐄𝐑𝐄𝐍𝐃𝐑𝐀&nbsp;</span>
           <span className="inline-flex items-center gap-1 whitespace-nowrap">
             <span>𝐏𝐑𝐀𝐃𝐄𝐄𝐏</span>
